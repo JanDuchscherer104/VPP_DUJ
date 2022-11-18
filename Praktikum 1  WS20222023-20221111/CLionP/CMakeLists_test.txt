@@ -9,9 +9,9 @@ set(CMAKE_CXX_STANDARD 14)
 
 include(FetchContent)
 FetchContent_Declare(
-  googletest
-  # Specify the commit you depend on and update it regularly.
-  URL https://github.com/google/googletest/archive/refs/heads/main.zip
+        googletest
+        # Specify the commit you depend on and update it regularly.
+        URL https://github.com/google/googletest/archive/refs/heads/main.zip
 )
 
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -20,14 +20,14 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(
-  ${prj_name}
-  komponentenList.cpp
-  fraesung.cpp
-  p01TestMain.cpp
+        ${prj_name}
+        komponentenList.cpp
+        fraesung.cpp
+        p01TestMain.cpp
 )
 target_link_libraries(
-  ${prj_name}
-  GTest::gtest_main
+        ${prj_name}
+        GTest::gtest_main
 )
 
 include(GoogleTest)

@@ -5,15 +5,16 @@
 
 /* Komponente */
 class Komponente {
-   private:
+  private:
     double x;
     double y;
 
-   public:
-    Komponente(double xPos = 0.0, double yPos = 0.0) : x{xPos}, y{yPos} {}
+  public:
+    explicit Komponente(double xPos = 0.0, double yPos = 0.0);
     double getX() const;
     double getY() const;
     virtual void output(std::ostream& os) const;
+    virtual ~Komponente() = default;
 };
 
 inline std::ostream& operator<<(std::ostream& os, const Komponente& k) {
@@ -23,29 +24,30 @@ inline std::ostream& operator<<(std::ostream& os, const Komponente& k) {
 
 /* Bohrung */
 class Bohrung : public Komponente {
-   private:
+  private:
     double diameter;
 
-   public:
-    Bohrung(double x_ = 0.0, double y_ = 0.0, double diam = 6.0)
-        : Komponente{x_, y_}, diameter{diam} {}
+  public:
+    explicit Bohrung(double x_ = 0.0, double y_ = 0.0, double diam = 6.0);
     double getDiameter() const;
-    virtual void output(std::ostream& os) const;
+    void output(std::ostream& os) const override;
+    ~Bohrung() override = default;
 };
 
 /* Fraesung */
 class Fraesung : public Bohrung {
-   private:
+  private:
     double length;
     double angle;
 
-   public:
-    Fraesung(double x, double y, double diam, double l, double a = 0.0)
-        : Bohrung{x, y, diam}, length{l}, angle{a} {}
+  public:
+    Fraesung(double x, double y, double diam, double l, double a = 0.0);
+    double getLength() const;
     double getAngle() const;
     double getEndX() const;
     double getEndY() const;
     void output(std::ostream& os) const override;
+    ~Fraesung() override = default;
 };
 
 #endif  // FRAESUNG_H

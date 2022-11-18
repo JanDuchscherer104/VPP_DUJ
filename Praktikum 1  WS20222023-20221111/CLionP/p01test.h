@@ -8,8 +8,9 @@
 #include <sstream>
 #include <string>
 
-#include "fraesung.h"
-#include "komponentenList.h"
+#include "fraesung.hpp"
+#include "komponentenList.hpp"
+
 using namespace testing;
 
 using std::cout;

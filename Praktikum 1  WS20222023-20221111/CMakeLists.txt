@@ -1,17 +1,17 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(prj_name "p01")
+set(prj_name "cmake-build-debug/p01")
 
-project(${prj_name})
+project(${prj_name} p01)
 
 # GoogleTest requires at least C++14
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(
   ${prj_name}
-  komponentenList.cpp
-  fraesung.cpp
-  P01Main.cpp
+        komponentenList.cpp
+        fraesung.cpp
+        P01Main.cpp
 )
 
 
