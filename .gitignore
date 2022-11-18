@@ -1,5 +1,13 @@
+# build files
 */build/*
+**/cmake-build-debug/**
+**/cmake-build-default/**
 **/build*
+# CLion & VSCode config
 **/.vscode/**
+**/.idea/**
 .DS_Store
 **dSYM**
+# executables
+main
+test
