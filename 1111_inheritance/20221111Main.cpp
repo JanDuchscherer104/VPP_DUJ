@@ -9,11 +9,22 @@
 using std::cout;
 using std::endl;
 
-class Lebewesen {
-   private:
+class ILebewesen {
+  public:
+    virtual void gibLaut() const = 0;
+
+    virtual double getLebensAlter() const = 0;
+
+    virtual void output(std::ostream& os) const = 0;
+
+    virtual ~ILebewesen() = default;
+};
+
+class Lebewesen : public ILebewesen {
+  private:
     int alter;
 
-   public:
+  public:
     Lebewesen(int a) : alter{a} {}
 
     int getAlter() const {
@@ -38,15 +49,15 @@ class Lebewesen {
     // als virtual deklariert
 
     // Virtuelle Methoden:
-    virtual void gibLaut() const {
+    void gibLaut() const override {
         cout << "hust hust" << endl;
     }
 
-    virtual double getLebensAlter() const {
+    double getLebensAlter() const override {
         return alter;
     }
 
-    virtual void output(std::ostream& os) const {
+    void output(std::ostream& os) const override {
         os << "Alter: " << alter << endl;
     }
 
@@ -54,14 +65,14 @@ class Lebewesen {
     // als virtual deklariert werden, damit bei der Verwendeung
     // von Basisklassen-Pointern/Referenzen der zum Objekt passende
     // Destruktor aufgerufen wird
-    virtual ~Lebewesen() {}
+    //virtual ~Lebewesen() {}
 };
 
 class Hund : public Lebewesen {
-   private:
+  private:
     double gewicht;
 
-   public:
+  public:
     Hund(int a, double g) : Lebewesen{a}, gewicht{g} {
     }
 
@@ -81,14 +92,16 @@ class Hund : public Lebewesen {
         Lebewesen::output(os);
         os << "Gewicht: " << gewicht << endl;
     }
-    ~Hund() {}
+    ~Hund() override {
+        std::cout << "Destroeyed Hund" << std::endl;
+    };
 };
 
 class Wellensittich : public Lebewesen {
-   private:
+  private:
     char geschlecht;
 
-   public:
+  public:
     Wellensittich(int a, char g) : Lebewesen{a}, geschlecht{g} {}
 
     void gibLaut() const override {
@@ -103,7 +116,7 @@ class Wellensittich : public Lebewesen {
         Lebewesen::output(os);
         os << "Geschlecht: " << geschlecht << endl;
     }
-    ~Wellensittich() {}
+    ~Wellensittich() override {}
 
     // Methode die es nicht in der Basis-Klasse gibt,
     // sie kann deshalb nicht ueber einen Basisklassen-Pointer/Referenz
@@ -114,7 +127,7 @@ class Wellensittich : public Lebewesen {
 };
 
 // Ueberladen des Ausgabe-Operators
-std::ostream& operator<<(std::ostream& os, const Lebewesen& le) {
+std::ostream& operator<<(std::ostream& os, const ILebewesen& le) {
     le.output(os);
     return os;
 }
@@ -172,7 +185,7 @@ int main() {
     // behandelt, aber trotzdem automatisch die genau zum
     // jeweiligen Objekt passende Aktion ausgefuehrt
     // Alle Tiere in einem STL-Vektor speichern
-    std::vector<Lebewesen*> meinZoo;
+    std::vector<ILebewesen*> meinZoo;
     meinZoo.push_back(&struppi);
     meinZoo.push_back(&hansi);
     meinZoo.push_back(&rex);
