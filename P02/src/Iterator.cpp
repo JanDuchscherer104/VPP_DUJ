@@ -10,23 +10,20 @@ Iterator& Iterator::operator++() {
     return *this;
 }
 
-Iterator& Iterator::operator--() {
-    if(curr) {
-        curr = curr->before;
-    }
-    return *this;
-}
-
-inline bool Iterator::operator!=(const Iterator& it) const {
+bool Iterator::operator!=(const Iterator& it) const {
     return it.curr != curr;
 }
 
-inline bool Iterator::operator==(const Iterator& it) const {
+bool Iterator::operator==(const Iterator& it) const {
     return it.curr == curr;
 }
 
-inline IKomponente* Iterator::operator*() const {
-    return curr->k;
+IKomponente* Iterator::operator*() const {
+    IKomponente* ret {};
+    if (curr) {
+        ret = curr->k;
+    }
+    return ret;
 }
 
 Iterator::~Iterator() {

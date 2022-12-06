@@ -14,7 +14,7 @@ class DeList {
   public:
     DeList(); // non-converting constructor - no parama so not necessary
     DeList(const DeList& rhs); // copy-constructor
-    DeList& operator=(const DeList& rhs); // copy-assignment
+    DeList& operator=(const DeList& rhs); // copy-assignmentss
     void clear();
     int size() const;
     Iterator erase(const Iterator& it);
@@ -23,6 +23,5 @@ class DeList {
     Iterator begin() const;
     ~DeList();
 };
-
 
 #endif //DELIST_HPP

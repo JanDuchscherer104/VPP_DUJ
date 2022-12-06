@@ -8,7 +8,6 @@ class Iterator {
   public:
     explicit Iterator(IKomponentenElement* begin = nullptr); // non-converting constructor
     Iterator& operator++();
-    Iterator& operator--();
     bool operator!=(const Iterator& it) const;
     bool operator==(const Iterator& it) const;
     IKomponente* operator*() const;

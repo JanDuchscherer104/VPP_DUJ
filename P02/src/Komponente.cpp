@@ -1,6 +1,6 @@
 #include "../include/Komponente.hpp"
 #include <iostream>
-#include <complex>
+#include <cmath>
 
 /* Definitions of methods for class Komponente */
 Komponente::Komponente(double xPos, double yPos)
@@ -39,8 +39,12 @@ double Komponente::getYAbsolute() const {
 }
 
 double Komponente::distance(const IKomponente* k) const {
-    return std::norm(std::complex<double>(getXAbsolute() - k->getXAbsolute(),
-                                          getYAbsolute() - k->getYAbsolute()));
+    double ret = 0;
+    if (k) {
+        ret = std::sqrt(std::pow(getXAbsolute() - k->getXAbsolute(), 2) +
+            std::pow(getYAbsolute() - k->getYAbsolute(), 2));
+    }
+    return ret;
 }
 
 inline const IKomponente* Komponente::getParent() const {
