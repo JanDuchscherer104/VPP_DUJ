@@ -1,0 +1,34 @@
+#ifndef KOMPONENTEN_LIST_H
+#define KOMPONENTEN_LIST_H
+
+#include <iostream>
+
+#include "../include/Fraesung.hpp"
+
+/* KomponentenList */
+class KomponentenList {
+  private:
+    size_t m_counter{0};
+    KomponentenElement* m_first{nullptr};
+    static bool s_verbose;
+
+    KomponentenElement* getElement(size_t pos) const;
+
+  public:
+    KomponentenList() = default;
+    size_t size() const; //inline causes error
+    Komponente const* at(size_t pos) const;
+    int erase(size_t pos);
+    void push_back(Komponente* k);
+    KomponentenElement* begin() const;
+    KomponentenElement* end() const;
+    void output(std::ostream& os) const;
+    ~KomponentenList();
+};
+
+inline std::ostream& operator<<(std::ostream& os, const KomponentenList& kl) {
+    kl.output(os);
+    return os;
+}
+
+#endif  // KOMPONENTEN_LIST_H
