@@ -4,7 +4,6 @@
 #include "include/werkstueck.hpp"
 
 int main() {
-
     Werkstueck w0{0, 0, 18, 25};
 
     Bohrung b1{1, 2, 8};

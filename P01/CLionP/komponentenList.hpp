@@ -19,7 +19,6 @@ class KomponentenList {
   private:
     size_t m_counter{0};
     KomponentenElement* m_first{nullptr};
-    KomponentenElement* m_head{nullptr};
     static bool s_verbose;
 
     KomponentenElement* getElement(size_t pos) const;

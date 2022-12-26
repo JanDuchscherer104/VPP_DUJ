@@ -70,6 +70,7 @@ Iterator DeList::erase(const Iterator& it) {
         if (temp->next) { // if temp is not last
             temp->next->before = temp->before;
         }
+        ++ret;
         delete temp;
         --counter;
     }

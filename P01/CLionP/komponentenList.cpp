@@ -30,8 +30,9 @@ size_t KomponentenList::size() const {
 }
 
 Komponente const* KomponentenList::at(size_t pos) const {
-    if (getElement(pos)) {
-        return getElement(pos)->k;
+    KomponentenElement* temp = getElement(pos);
+    if (temp) {
+        return temp->k;
     }
     return nullptr;
 }

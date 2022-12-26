@@ -1,7 +1,9 @@
 #ifndef IKOMPONENTENELEMENT_HPP
 #define IKOMPONENTENELEMENT_HPP
 
-#include "IKomponente.hpp"
+//#include "IKomponente.hpp"
+
+class IKomponente;
 
 struct IKomponentenElement {
   IKomponente* k;

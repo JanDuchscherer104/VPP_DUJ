@@ -23,14 +23,17 @@ void Werkstueck::add(IKomponente* k) {
 void Werkstueck::remove(const IKomponente* k) {
     for (Iterator it = komponenten.begin(); it != komponenten.end(); ++it) {
         if (k == *it) {
-            if (komponenten.erase(it) != it) {
+            (*it)->setParent(nullptr);
+            komponenten.erase(it);
+            pathIsOptimized = false;
+            break;
+            /*if (komponenten.erase(it)) {
                 std::cout << "Could not erase IKomponente k from komponeten!" << std::endl;
             } else {
-                (*it)->setParent(nullptr);
-            }
+                //(*it)->setParent(nullptr);
+            }*/
         }
     }
-    pathIsOptimized = false;
 }
 
 const IKomponente* Werkstueck::getChild(int i) const {
@@ -69,6 +72,11 @@ double Werkstueck::calcTotalPath() const {
     return totalPath;
 }
 
+/*
+ * @brief reorders all children stored in this->komponenten so that the euclidean distance between
+ *        adjacent elements is  minimized
+ *
+ */
 void Werkstueck::optimizePath() {
     if (!pathIsOptimized && komponenten.size()) {
         for (IKomponente* it : komponenten) {
@@ -93,7 +101,7 @@ void Werkstueck::output(std::ostream& os) const {
     std::string spaces;
     const IKomponente* parent;
     parent = Komponente::getParent();
-    while (parent) {
+    while (parent) { // indentation-depth
         spaces += "  ";
         parent = parent->getParent();
     }
@@ -122,7 +130,7 @@ Iterator Werkstueck::getNearest(const IKomponente* pk) const {
     double distance;
     double lowest_distance = std::numeric_limits<double>::max();
     Iterator ret;
-    for (Iterator it = komponenten.begin(); it != komponenten.end(); ++it) {
+    for (Iterator it{komponenten.begin()}; it != komponenten.end(); ++it) {
         if (*it != pk) {
             distance = pk->distance(*it);
             if (distance < lowest_distance) {
