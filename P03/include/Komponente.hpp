@@ -3,6 +3,8 @@
 
 #include "IKomponente.hpp"
 
+class QJsonObject;
+
 /* Komponente */
 class Komponente : public IKomponente {
   private:
@@ -21,6 +23,7 @@ class Komponente : public IKomponente {
     const IKomponente* getParent() const override;
     void setParent(const IKomponente* p) override;
     void output(std::ostream& os) const override;
+    QJsonObject toJson() const override;
     ~Komponente() override = default;
 };
 

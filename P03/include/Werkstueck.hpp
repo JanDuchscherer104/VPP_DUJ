@@ -25,6 +25,7 @@ class Werkstueck : public Komponente {
     double calcPathLength() const;
     void optimizePath();
     void output(std::ostream& os) const override;
+    QJsonObject toJson() const override;
     ~Werkstueck() override;
 };
 

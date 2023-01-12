@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+class QJsonObject;
+
 /* Komponente */
 class IKomponente {
   public:
@@ -16,6 +18,7 @@ class IKomponente {
     virtual const IKomponente* getParent() const = 0;
     virtual void setParent(const IKomponente* p) = 0;
     virtual void output(std::ostream& os) const = 0;
+    virtual QJsonObject toJson() const = 0;
     virtual ~IKomponente() = default;
 };
 

@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <QJsonObject>
 
 /* Definitions of methods for class Fraesung */
 Fraesung::Fraesung(double x, double y, double diam, double l, double a)
@@ -51,4 +52,13 @@ void Fraesung::output(std::ostream& os) const {
     Bohrung::Komponente::output(os);  //TODO or Komponente::output?
     os << " und Endpunkt: (" << getEndX() << ", " << getEndY() << "), "
        << "Durchmesser: " << Bohrung::getDiameter();
+}
+
+QJsonObject Fraesung::toJson() const{
+    QJsonObject ret;
+    ret = Bohrung::toJson();
+    ret["type"] = "Fraesung";
+    ret["length"] = length;
+    ret["angle"] = angle;
+    return ret;
 }

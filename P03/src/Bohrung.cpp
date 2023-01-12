@@ -1,5 +1,6 @@
 #include "../include/Bohrung.hpp"
 #include <iostream>
+#include <QJsonObject>
 
 /* Definitions of methods for class Bohrung */
 Bohrung::Bohrung(double x_, double y_, double diam)
@@ -24,4 +25,11 @@ void Bohrung::output(std::ostream& os) const {
     os << "Bohrung: ";
     Komponente::output(os);
     os << ", Durchmesser: " << diameter;
+}
+QJsonObject Bohrung::toJson() const {
+    QJsonObject ret;
+    ret = Komponente::toJson();
+    ret["type"] = "Bohrung";
+    ret["diameter"] = diameter;
+    return ret;
 }

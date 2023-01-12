@@ -19,6 +19,7 @@ class Fraesung : public Bohrung {
     double getEndY() const;
     double calcTotalPath() const override;
     void output(std::ostream& os) const override;
+    QJsonObject toJson() const override;
     ~Fraesung() override = default;
 };
 

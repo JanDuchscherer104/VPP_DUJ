@@ -3,6 +3,8 @@
 #include "../include/DeList_impl.hpp"
 #include <stdexcept>
 #include <string>
+#include <QJsonObject>
+#include <QJsonArray>
 
 /* Werkstuek ~ public methods */
 Werkstueck::Werkstueck(double xPos, double yPos, double h, double w)
@@ -143,5 +145,20 @@ Iterator<IKomponente*> Werkstueck::getNearest(const IKomponente* pk) const {
             }
         }
     }
+    return ret;
+}
+
+QJsonObject Werkstueck::toJson() const {
+    QJsonObject ret;
+    ret = Komponente::toJson();
+    ret["type"] = "Werkstueck";
+    ret["height"] = height;
+    ret["width"] = width;
+    ret["pathIsOptimized"] = pathIsOptimized;
+    QJsonArray komponentenArray;
+    for (IKomponente* item: komponenten) {
+        komponentenArray.push_back(item->toJson());
+    }
+    ret["components"] = komponentenArray;
     return ret;
 }

@@ -367,7 +367,7 @@ TEST(WerkstueckTest, OptimizePathOnEmpty) {
     EXPECT_EQ(w0.getChild(1), nullptr);
 }
 
-/*TEST(JSONTest, LeafObjectTest) {
+TEST(JSONTest, LeafObjectTest) {
     Fraesung f1(0, 2, 1, 3, M_PI_4);
     Bohrung b1(1, 2, 1.5);
     Komponente k1(2, 0);
@@ -449,4 +449,4 @@ TEST(JSONTest, OptimizedPath) {
     tmp = w0.toJson();
     EXPECT_EQ(tmp["pathIsOptimized"].toBool(), false);
 
-}*/
+}

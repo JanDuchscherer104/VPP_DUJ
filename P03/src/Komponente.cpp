@@ -1,6 +1,7 @@
 #include "../include/Komponente.hpp"
 #include <iostream>
 #include <cmath>
+#include <QJsonObject>
 
 /* Definitions of methods for class Komponente */
 Komponente::Komponente(double xPos, double yPos)
@@ -56,4 +57,13 @@ inline void Komponente::setParent(const IKomponente* p) {
 
 void Komponente::output(std::ostream& os) const {
     os << "(" << x << ", " << y << ")";
+}
+
+QJsonObject Komponente::toJson() const {
+    QJsonObject ret;
+    ret["type"] = "Komponente";
+    ret["x"] = getX();
+    ret["y"] = getY();
+    ret["hasParent"] = (bool)(getParent() != nullptr);
+    return ret;
 }
